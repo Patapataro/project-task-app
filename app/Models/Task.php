@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Task extends Model
 {
@@ -15,11 +17,27 @@ class Task extends Model
      * @var array<int, string, timestamp>
      */
     protected $fillable = [
-        'id',
         'project_id',
         'priority',
         'name',
         'completed-date',
         'created-date',
     ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'complete' => null,
+    ];
+
+    /**
+     * Get the project that owns the task.
+     */
+    public function project(): BelongsTo
+    {
+        return $this->belongsTo(Project::class);
+    }
 }

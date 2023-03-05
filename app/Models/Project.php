@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Project extends Model
 {
@@ -15,7 +17,14 @@ class Project extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
         'name',
     ];
+
+    /**
+     * Get the Tasks for the project.
+     */
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }
