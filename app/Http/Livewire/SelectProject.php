@@ -8,7 +8,6 @@ use App\Models\Project;
 class SelectProject extends Component
 {
     public $projects = [];
-
     public $project_id;
 
     protected $listeners = ['updateProject' => 'mount'];
@@ -25,5 +24,10 @@ class SelectProject extends Component
         $project->delete();
 
         $this->mount();
+    }
+
+    public function updatedProject_id()
+    {
+        $this->emit('updateProject', $this->project_id);
     }
 }
