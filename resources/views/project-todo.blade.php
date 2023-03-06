@@ -18,11 +18,7 @@
 
             @livewire('select-project')
 
-
-            <ul class=" mx-auto">
-                <li class="p-2 border flex justify-between border-gray-300"><span>Task one</span><button class="px-4 text-red-500 font-bold font-sans">X</button></li>
-                <li class="p-2 border flex justify-between border-gray-300"><span>Task Two</span><button class="px-4 text-red-500 font-bold font-sans">X</button></li>
-            </ul>
+            @livewire('task-list')
         </div>
     </div>
 </div>
