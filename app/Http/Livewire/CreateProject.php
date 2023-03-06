@@ -17,13 +17,13 @@ class CreateProject extends Component
     {
         $this->validate();
         
-        Project::create([
+        $project = Project::create([
             'name' => $this->name
         ]);
 
         $this->reset('name');
 
-        $this->emit('updateProjects');
+        $this->emit('updateProject', $project->id);
     }
 
     public function render()

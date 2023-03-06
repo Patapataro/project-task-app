@@ -11,11 +11,12 @@ class SelectProject extends Component
 
     public $project_id;
 
-    protected $listeners = ['updateProjects' => 'mount'];
+    protected $listeners = ['updateProject' => 'mount'];
 
-    public function mount()
+    public function mount($project_id = null)
     {
         $this->projects = Project::all();
+        $this->project_id = $project_id;
     }
 
     public function delete()
