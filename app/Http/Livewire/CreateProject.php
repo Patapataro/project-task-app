@@ -9,6 +9,7 @@ class CreateProject extends Component
 {
     public $name;
 
+    protected $rules = [
         'name' =>'required'
     ];
 
