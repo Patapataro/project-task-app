@@ -3,29 +3,26 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Project;
 
 class SelectProject extends Component
 {
     public $projects = [];
 
+    public $project_id;
+
+    protected $listeners = ['updateProjects' => 'mount'];
+
     public function mount()
     {
-        $this->projects = [
-                (object)[
-                    'name' => 'Bug Tracker App',
-                    'id' => 1
-                ],
-                (object)[
-                    'name' => 'ChatGPT',
-                    'id' => 2
-                ]
-            ];
+        $this->projects = Project::all();
     }
 
-    public function render()
+    public function delete()
     {
-        return view('livewire.select-project', [
-            'projects' => $this->projects,
-        ]);
+        $project = Project::find($this->project_id);
+        $project->delete();
+
+        $this->mount();
     }
 }
