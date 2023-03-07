@@ -29,9 +29,9 @@ class Task extends Model
      *
      * @var array
      */
-    protected $attributes = [
-        'complete' => null,
-    ];
+    // protected $attributes = [
+    //     'completed' => null,
+    // ];
 
     /**
      * Get the project that owns the task.

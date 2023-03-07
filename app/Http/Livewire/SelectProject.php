@@ -26,7 +26,7 @@ class SelectProject extends Component
         $this->mount();
     }
 
-    public function updatedProject_id()
+    public function updated()
     {
         $this->emit('updateProject', $this->project_id);
     }

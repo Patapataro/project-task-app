@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Project;
+use App\Models\Task;
 
 class AddTask extends Component
 {
@@ -12,21 +13,28 @@ class AddTask extends Component
 
     protected $listeners = ['updateProject' => 'mount'];
 
-    public function mount($project_id)
+    public function mount($project_id = null)
     {
         $this->project_id = $project_id;
     }
 
+
     public function addTask()
     {
         $project = Project::find($this->project_id);
-        $max = $project->tasks->max('priority');
-        $task = $project->tasks->create([
+        $max = 1;
+        if($project->tasks() != null)
+        {
+            $max += $project->tasks()->max('priority');
+        }
+
+        $task = new Task([
             'project_id' => $this->project_id,
-            'priority' => $max + 1,
-            'name' => $this->name,
-            'completed' => null,
+            'priority' => $max,
+            'name' => $this->name
         ]);
+
+        $task = $project->tasks()->save($task);
     }
 
     public function render()
