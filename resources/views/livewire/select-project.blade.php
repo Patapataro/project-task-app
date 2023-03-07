@@ -1,7 +1,7 @@
 
 <div class="pb-2 mb-4 flex">
     <select wire:model="project_id" name="projects" id="projects" class="w-full">
-        <option value="" disabled selected>SELECT A PROJECT</option>
+        <option value="" selected>SELECT A PROJECT</option>
         @foreach($projects as $project)
             <option value="{{ $project->id }}">{{$project->name}}</option>
         @endforeach
