@@ -10,6 +10,13 @@ class AddTask extends Component
     public $name;
     public $project_id;
 
+    protected $listeners = ['updateProject' => 'mount'];
+
+    public function mount($project_id)
+    {
+        $this->project_id = $project_id;
+    }
+
     public function addTask()
     {
         $project = Project::find($this->project_id);
