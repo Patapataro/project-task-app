@@ -23,7 +23,7 @@ class CreateProject extends Component
 
         $this->reset('name');
 
-        $this->emit('updateProject', $project->id);
+        $this->emit('createdProject', $project->id);
     }
 
     public function render()

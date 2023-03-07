@@ -10,12 +10,13 @@ class SelectProject extends Component
     public $projects = [];
     public $project_id;
 
-    protected $listeners = ['updateProject' => 'mount'];
+    protected $listeners = ['createdProject' => 'mount'];
 
     public function mount($project_id = null)
     {
         $this->projects = Project::all();
         $this->project_id = $project_id;
+        $this->emit('selectedProject', $this->project_id);
     }
 
     public function delete()
@@ -26,8 +27,8 @@ class SelectProject extends Component
         $this->mount();
     }
 
-    public function updated()
+    public function updatedProjectId()
     {
-        $this->emit('updateProject', $this->project_id);
+        $this->emit('selectedProject', $this->project_id);
     }
 }
