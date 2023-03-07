@@ -7,16 +7,26 @@ use App\Models\Project;
 
 class TaskList extends Component
 {
+    public $project_id;
     public $tasks = [];
 
-    protected $listeners = ['updateProject' => 'mount'];
+    protected $listeners = [
+        'selectedProject' => 'fetchTasks',
+        'newTask' => 'refreshTasks',
+    ];
 
-
-    public function mount($project_id = null)
+    public function fetchTasks($project_id)
     {
         if($project_id != null) {
-            $this->tasks = Project::find($project_id)->tasks;
+            $project = Project::find($project_id);
+            $this->project_id = $project->id;
+            $this->tasks = $project->tasks;
         }
+    }
+
+    public function refreshTasks()
+    {
+        $this->tasks = Project::find($this->project_id)->tasks;
     }
 
     public function render()

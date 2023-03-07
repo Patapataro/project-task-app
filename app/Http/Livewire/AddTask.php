@@ -11,7 +11,7 @@ class AddTask extends Component
     public $name;
     public $project_id;
 
-    protected $listeners = ['updateProject' => 'mount'];
+    protected $listeners = ['selectedProject' => 'mount'];
 
     public function mount($project_id = null)
     {
@@ -35,6 +35,9 @@ class AddTask extends Component
         ]);
 
         $task = $project->tasks()->save($task);
+        
+        $this->reset('name');
+        $this->emit('newTask');
     }
 
     public function render()

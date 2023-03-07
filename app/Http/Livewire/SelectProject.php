@@ -15,8 +15,10 @@ class SelectProject extends Component
     public function mount($project_id = null)
     {
         $this->projects = Project::all();
-        $this->project_id = $project_id;
-        $this->emit('selectedProject', $this->project_id);
+        if($project_id != null)
+        {
+            $this->project_id = $project_id;
+        }
     }
 
     public function delete()
