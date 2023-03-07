@@ -18,12 +18,18 @@ class AddTask extends Component
         $this->project_id = $project_id;
     }
 
-
     public function addTask()
     {
         $project = Project::find($this->project_id);
         $max = 1;
-        if($project->tasks() != null)
+
+        // Return validation error here.
+        if($project == null)
+        {
+            return;
+        }
+
+        if($project->tasks != null)
         {
             $max += $project->tasks()->max('priority');
         }
@@ -37,7 +43,8 @@ class AddTask extends Component
         $task = $project->tasks()->save($task);
         
         $this->reset('name');
-        $this->emit('newTask');
+        $this->emit('refreshTasks');
+
     }
 
     public function render()
