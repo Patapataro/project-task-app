@@ -11,9 +11,9 @@ class AddTask extends Component
     public $name;
     public $project_id;
 
-    protected $listeners = ['selectedProject' => 'mount'];
+    protected $listeners = ['selectedProject'];
 
-    public function mount($project_id = null)
+    public function selectedProject($project_id = null)
     {
         $this->project_id = $project_id;
     }
