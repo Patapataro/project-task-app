@@ -14,6 +14,12 @@ class Task extends Component
         $this->task = $task;
     }
 
+    public function delete()
+    {
+        $this->task->delete();
+        $this->emitup('refreshTasks');
+    }
+
     public function render()
     {
         return view('livewire.task');

@@ -12,7 +12,7 @@ class TaskList extends Component
 
     protected $listeners = [
         'selectedProject' => 'fetchTasks',
-        'newTask' => 'refreshTasks',
+        'refreshTasks',
     ];
 
     public function fetchTasks($project_id)
