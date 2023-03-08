@@ -15,12 +15,15 @@ class TaskList extends Component
         'refreshTasks',
     ];
 
-    public function fetchTasks($project_id)
+    public function fetchTasks($project_id = null)
     {
         if($project_id != null) {
             $project = Project::find($project_id);
             $this->project_id = $project->id;
             $this->tasks = $project->tasks;
+        }
+        else{
+            $this->reset('tasks');
         }
     }
 
