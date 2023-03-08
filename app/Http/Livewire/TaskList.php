@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Project;
+use App\Models\Task;
 
 class TaskList extends Component
 {
@@ -20,7 +21,7 @@ class TaskList extends Component
         if($project_id != null) {
             $project = Project::find($project_id);
             $this->project_id = $project->id;
-            $this->tasks = $project->tasks;
+            $this->tasks = $project->tasks->sortBy('priority');
         }
         else{
             $this->reset('tasks');
@@ -34,7 +35,12 @@ class TaskList extends Component
 
     public function reorder($orderdIds)
     {
-        dd($orderdIds);
+        foreach($orderdIds as $orderId){
+            $task = Task::find($orderId['value']);
+            $task->priority = $orderId['order'];
+            $task->save();
+        }
+        $this->refreshTasks();
     }
 
     public function render()
