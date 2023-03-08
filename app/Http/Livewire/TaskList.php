@@ -32,6 +32,11 @@ class TaskList extends Component
         $this->tasks = Project::find($this->project_id)->tasks;
     }
 
+    public function reorder($orderdIds)
+    {
+        dd($orderdIds);
+    }
+
     public function render()
     {
         return view('livewire.task-list');
