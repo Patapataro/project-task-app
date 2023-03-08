@@ -26,6 +26,7 @@ class AddTask extends Component
         // Return validation error here.
         if($project == null)
         {
+            $this->reset('name');
             return;
         }
 
